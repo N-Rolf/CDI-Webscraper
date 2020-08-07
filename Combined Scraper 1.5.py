@@ -190,7 +190,7 @@ huronActive = huronSoup.select('a[href*="bids/view/id"]')
 
 huronTitles = []
 huronSites = []
-huronList = []	#likely empty return
+huronList = []
 
 yearNumRegex = re.compile(r'\d{4}-\d{2}') #wtf huron
 
