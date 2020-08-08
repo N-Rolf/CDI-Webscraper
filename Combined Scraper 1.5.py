@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import tkinter as tk
 from tkinter import *
 
-#************************************************************^
+#************************************************************
 #CITY OF BROOKINGS
 #************************************************************
 brookingsBaseUrl = 'https://cityofbrookings.org/'
@@ -55,7 +55,9 @@ for idx, val in enumerate(brookSites):
 		siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 		siteButtons.grid(row=(idx), column=2)
 
+#************************************************************
 #CITY OF SIOUX FALLS
+#************************************************************
 sfbaseUrl = 'siouxfalls.org'
 
 #import Bid Page
@@ -94,7 +96,9 @@ for idx, val in enumerate(sfSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + runningcount), column=2)
 
+#************************************************************
 #CITY OF WATERTOWN
+#************************************************************
 watertownBaseUrl = 'https://watertown.us'
 
 #import Bid Page
@@ -140,7 +144,9 @@ for idx, val in enumerate(waterSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + runningcount), column=2)
 
+#************************************************************
 #CITY OF ABERDEEN
+#************************************************************
 aberdeenBaseUrl = 'https://aberdeen.sd.us/'
 
 #import Bid Page
@@ -187,7 +193,9 @@ for idx, val in enumerate(aberSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + runningcount), column=2)
 
+#************************************************************
 #CITY OF HURON
+#************************************************************
 huronBaseUrl = 'https://huronsd.com'
 
 #import Bid Page
@@ -237,7 +245,9 @@ for idx, val in enumerate(huronSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + huronCount), column=2)
 
+#************************************************************
 #CITY OF PIERRE
+#************************************************************
 pierreBaseUrl = 'https://cityofpierre.org/'
 
 #import Bid Page
@@ -285,7 +295,9 @@ for idx, val in enumerate(pierreSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + pierreCount), column=2)
 
+#************************************************************
 #CITY OF MITCHELL
+#************************************************************
 mitchellBaseUrl = 'https://www.cityofmitchell.org/'
 
 #import Bid Page
@@ -333,7 +345,9 @@ for idx, val in enumerate(mitchellSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + mitchellCount), column=2)
 
+#************************************************************
 #CITY OF YANKTON
+#************************************************************
 yanktonBaseUrl = 'https://www.cityofyankton.org/'
 
 #import Bid Page
@@ -378,7 +392,9 @@ for idx, val in enumerate(yanktonSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + yanktonCount), column=2)
 
+#************************************************************
 #CITY OF SPEARFISH
+#************************************************************
 spearfishBaseUrl = 'https://www.cityofspearfish.com/'
 
 #import Bid Page
@@ -428,7 +444,9 @@ for idx, val in enumerate(spearfishSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + spearfishCount), column=2)
 
+#************************************************************
 #CITY OF VERMILLION
+#************************************************************
 vermillionBaseUrl = 'https://www.vermillion.us/'
 
 #import Bid Page
@@ -479,7 +497,9 @@ for idx, val in enumerate(vermillionSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + vermillionCount), column=2)
 
+#************************************************************
 #CITY OF MADISON
+#************************************************************
 madisonBaseUrl = 'https://www.cityofmadisonsd.com/'
 
 #import Bid Page
@@ -527,7 +547,9 @@ for idx, val in enumerate(madisonSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
 	siteButtons.grid(row=(idx + madisonCount), column=2)
 
+#************************************************************
 #South Dakota Game Fish & Parks
+#************************************************************
 sdgfpBaseUrl = 'https://gfp.sd.gov/'
 
 #import Bid Page
