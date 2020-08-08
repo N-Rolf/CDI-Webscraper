@@ -78,17 +78,19 @@ else:
 print("Sioux Falls Done!" , len(sfTitles))
 #ui counter
 sfCount = (len(brookTitles))
+runningcount = len(brookTitles)
+print("sf count",sfCount, "running count", runningcount)
 #tkinter
 sfHeader = tk.Label(text="Sioux Falls Open Projects")
-sfHeader.grid(row=sfCount, column=0)
+sfHeader.grid(row=runningcount, column=0)
 
 for idx, val in enumerate(sfTitles):
 	siteLabels = tk.Label(text=val)
-	siteLabels.grid(row=(idx + sfCount), column=1)
+	siteLabels.grid(row=(idx + runningcount), column=1)
 
 for idx, val in enumerate(sfSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
-	siteButtons.grid(row=(idx + sfCount), column=2)
+	siteButtons.grid(row=(idx + runningcount), column=2)
 
 #CITY OF WATERTOWN
 watertownBaseUrl = 'https://watertown.us'
@@ -121,17 +123,20 @@ print("Watertown Done!" , len(waterTitles))
 waterCount = \
 (len(brookTitles) \
 + len(sfTitles))
+
+runningcount += len(sfTitles)
+print("water count",waterCount,  "running count", runningcount)
 #tkinter
 waterHeader = tk.Label(text="Watertown Open Projects")
-waterHeader.grid(row=waterCount, column=0)
+waterHeader.grid(row=runningcount, column=0)
 
 for idx, val in enumerate(waterTitles):
 	siteLabels = tk.Label(text=val)
-	siteLabels.grid(row=(idx + waterCount), column=1)
+	siteLabels.grid(row=(idx + runningcount), column=1)
 
 for idx, val in enumerate(waterSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
-	siteButtons.grid(row=(idx + waterCount), column=2)
+	siteButtons.grid(row=(idx + runningcount), column=2)
 
 #CITY OF ABERDEEN
 aberdeenBaseUrl = 'https://aberdeen.sd.us/'
@@ -165,17 +170,20 @@ aberCount = \
 (len(brookTitles) \
 + len(sfTitles) \
 + len(waterTitles))
+
+runningcount += len(waterTitles)
+print("aber count",aberCount, "running count", runningcount)
 #tkinter
 aberHeader = tk.Label(text="Aberdeen Open Projects")
-aberHeader.grid(row=aberCount, column=0)
+aberHeader.grid(row=runningcount, column=0)
 
 for idx, val in enumerate(aberTitles):
 	siteLabels = tk.Label(text=val)
-	siteLabels.grid(row=(idx + aberCount), column=1)
+	siteLabels.grid(row=(idx + runningcount), column=1)
 
 for idx, val in enumerate(aberSites):
 	siteButtons = tk.Button(text=val, command=lambda x=val: openbrowser(x))
-	siteButtons.grid(row=(idx + aberCount), column=2)
+	siteButtons.grid(row=(idx + runningcount), column=2)
 
 #CITY OF HURON
 huronBaseUrl = 'https://huronsd.com'
