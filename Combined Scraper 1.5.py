@@ -4,7 +4,9 @@ from bs4 import BeautifulSoup
 import tkinter as tk
 from tkinter import *
 
+#************************************************************
 #CITY OF BROOKINGS
+#************************************************************
 brookingsBaseUrl = 'https://cityofbrookings.org/'
 
 #import City of Brookings Bid Page
