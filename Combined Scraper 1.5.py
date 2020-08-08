@@ -37,7 +37,7 @@ print("Brookings Done!" , len(brookTitles))
 root = tk.Tk()
 #root.geometry("900x400")
 
-#scroll bar
+#scroll bar test
 scroll_bar = Scrollbar(root, orient="vertical")
 scroll_bar.grid(row=0, column=3, sticky='ns')
 
