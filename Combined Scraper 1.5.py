@@ -1,35 +1,149 @@
 import re
 import requests, bs4, webbrowser
+from multiprocessing import Pool
 from bs4 import BeautifulSoup
 import tkinter as tk
 from tkinter import *
 
-#************************************************************
-#CITY OF BROOKINGS
-#************************************************************
-brookingsBaseUrl = 'https://cityofbrookings.org/'
+class WebScraper:
+	def __init__(self):
+		pass
 
-#import City of Brookings Bid Page
-brkngsUrl = 'https://cityofbrookings.org/Bids.aspx?CatID=All&txtSort=Category&showAllBids=&Status='
-brkngsPage = requests.get(brkngsUrl)
+	def scrape(self):
+		pass
 
-#beautifulSoup
-brkngsSoup = BeautifulSoup(brkngsPage.content, 'html5lib')
-brookingsActive = brkngsSoup.select('a[href*="bids.aspx"]')
+	def getURLs(self):
+		pass
 
-brookTitles = []
-brookSites = []
-if len(brookingsActive) != 0:
-	for element in brookingsActive:
-		brookTitles.append(element.text)
-		brookSites.append(brookingsBaseUrl + element.get('href'))	
-		unwanted = [i for i, s in enumerate(brookingsActive) if 'Read\xa0on' in s]
-	for ele in sorted(unwanted, reverse = True):
-		del brookTitles[ele]
-		del brookSites[ele]
-else:
-	brookTitles.append('none')
-	brookSites.append('none')
+
+def _singleScraper(url, query):
+	try:
+		page = requests.get(url + query)
+	except ConnectionError:
+		pass
+
+	soup = BeautifulSoup(page.content, 'html5lib')
+	active = soup.select(r'a[href*="bids.aspx"]')
+
+	titles = []
+	sites = []
+	if len(active) > 0:
+		for elem in active:
+			if 'Read\xa0on' not in elem:
+				titles.append(elem.text)
+				sites.append(url + elem.get('href'))
+	else:
+		titles.append('none')
+		sites.append('none')
+
+	return titles, sites
+
+def _otherScraper(url, query):		#madison, sioux falls
+	try:
+		page = requests.get(url + query)
+	except ConnectionError:
+		pass
+
+	soup = BeautifulSoup(page.content, 'html5lib')
+	active = soup.findAll(r'a')
+
+	titles = []
+	sites = []
+	if len(active) > 0:
+		for elem in active:
+			titles.append(elem.text)
+			sites.append(url + elem.get("href"))
+	else:
+		titles.append('none')
+		sites.append('none')
+
+	return titles, sites
+
+if __name__ == '__main__':
+	brookingsURL = 'https://cityofbrookings.org/'
+	brookingsQuery = 'Bids.aspx?CatID=All&txtSort=Category&showAllBids=&Status='
+
+	siouxfallsURL = 'https://www.siouxfalls.org/'
+	siouxfallsQuery = 'business/ntb'
+
+	aberdeenURL = 'https://aberdeen.sd.us/'
+	aberdeenQuery = 'Bids.aspx'
+
+	watertownURL = 'https://watertown.us'
+	watertownQuery = 'Bids.aspx'
+
+	huronURL = 'https://huronsd.com'
+	huronQuery = 'bids'
+
+	pierreURL = 'https://cityofpierre.org/'
+	pierreQuery = 'Bids.aspx'
+
+	mitchellURL = 'https://www.cityofmitchell.org/'
+	mitchellQuery = 'Bids.aspx'
+
+	yanktonURL = 'https://www.cityofyankton.org/'
+	yanktonQuery = 'how-do-i/bid-rfp-posts-list/-selsta-4'
+
+	spearfishURL = 'https://www.cityofspearfish.com/'
+	spearfishQuery = 'Bids.aspx'
+
+	vermillionURL = 'https://www.vermillion.us/'
+	vermillionQuery = 'Bids.aspx'
+
+	madisonURL = 'https://www.cityofmadisonsd.com/'
+	madisonQuery = 'bids'
+
+	sdgfpURL = 'https://gfp.sd.gov/'
+	sdgfpQuery = 'bids-contracts/'
+
+	print('--- Brookings ---')
+	t, s = _singleScraper(brookingsURL, brookingsQuery)
+	print(t)
+	print(s)
+	print('--- Sioux Falls ---')	#uses .findAll('a') , no unwanted
+	t, s = _otherScraper(siouxfallsURL, siouxfallsQuery)
+	print(t)
+	print(s)
+	print('--- Aberdeen ---')
+	t, s = _singleScraper(aberdeenURL, aberdeenQuery)
+	print(t)
+	print(s)
+	print('--- Watertown ---')
+	t, s = _singleScraper(watertownURL, watertownQuery)
+	print(t)
+	print(s)
+	#print('--- Huron ---')		#uses .select('a[href*='bids/view/id']') , some regex to filter out redundant year links
+	#t, s = _singleScraper(huronURL, huronQuery)
+	#print(t)
+	#print(s)
+	print('--- Pierre ---')
+	t, s = _singleScraper(pierreURL, pierreQuery)
+	print(t)
+	print(s)
+	print('--- Mitchell ---')
+	t, s = _singleScraper(mitchellURL, mitchellQuery)
+	print(t)
+	print(s)
+	#print('--- Yankton ---')	#uses .select('a[href*="Components/RFP"]') , no unwanted
+	#t, s = _singleScraper(yanktonURL, yanktonQuery)
+	#print(t)
+	#print(s)
+	print('--- Spearfish ---')
+	t, s = _singleScraper(spearfishURL, spearfishQuery)
+	print(t)
+	print(s)
+	print('--- Vermillion ---')
+	t, s = _singleScraper(vermillionURL, vermillionQuery)
+	print(t)
+	print(s)
+	print('--- Madison ---')	#uses .findAll('a') , no unwanted
+	t, s = _otherScraper(madisonURL, madisonQuery)
+	print(t)
+	print(s)
+	#print('--- SD Game Fish & Parks ---')	#uses .findAll('a') , 'Yes'
+	#t, s = _singleScraper(sdgfpURL, sdgfpQuery)
+	#print(t)
+	#print(s)
 
 #console progress
 print("Brookings Done!" , len(brookTitles))
